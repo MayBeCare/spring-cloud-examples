@@ -22,6 +22,7 @@ public class RibbonController {
 
     @RequestMapping({"/ribbon/getTime"})
     @HystrixCommand(fallbackMethod="hystrixError")
+     //@HystrixCommand(fallbackMethod = "method")指定熔断点并指定熔断方法,其参数类型必须一致
     public String getTime() {
         return restTemplate.getForObject("http://SPRING-CLOUD-PRODUCER/nowTime", String.class);
     }

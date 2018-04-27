@@ -10,13 +10,13 @@ import org.springframework.web.client.RestTemplate;
 
 @SpringBootApplication
 @EnableDiscoveryClient
-@EnableHystrix
+@EnableHystrix     //开启hystrix(熔断器)功能
 public class SpringCloudConsumerRibbonApplication {
 
 	@Bean
-	@LoadBalanced
+	@LoadBalanced    //@LoadBalanced注解表明这个restRemplate开启负载均衡的功能
 	RestTemplate restTemplate(){
-		return new RestTemplate();
+		return new RestTemplate();     //以RestTemplate的方式调用服务
 	}
 
 	public static void main(String[] args) {
