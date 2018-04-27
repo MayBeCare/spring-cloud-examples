@@ -10,7 +10,8 @@ import org.springframework.web.client.RestTemplate;
 
 @SpringBootApplication
 @EnableDiscoveryClient
-@EnableHystrix     //开启hystrix(熔断器)功能
+@EnableHystrix     //开启hystrix(熔断器)功能,这个是必须的,并且需要在程序中声明断路点HystrixCommand;
+                   //feign方式的调用则不需要，其自带断容器，只需在配置文件中开启
 public class SpringCloudConsumerRibbonApplication {
 
 	@Bean
