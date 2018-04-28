@@ -14,7 +14,7 @@ import org.springframework.web.client.RestTemplate;
                    //feign方式的调用则不需要，其自带断容器，只需在配置文件中开启
 public class SpringCloudConsumerRibbonApplication {
 
-	@Bean
+	@Bean            //注册一个具有容错功能的RestTemplate
 	@LoadBalanced    //@LoadBalanced注解表明这个restRemplate开启负载均衡的功能
 	RestTemplate restTemplate(){
 		return new RestTemplate();     //以RestTemplate的方式调用服务
