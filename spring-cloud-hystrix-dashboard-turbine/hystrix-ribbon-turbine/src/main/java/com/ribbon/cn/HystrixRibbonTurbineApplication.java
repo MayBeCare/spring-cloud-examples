@@ -5,6 +5,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.client.loadbalancer.LoadBalanced;
 import org.springframework.cloud.netflix.hystrix.EnableHystrix;
+import org.springframework.cloud.netflix.hystrix.dashboard.EnableHystrixDashboard;
 import org.springframework.context.annotation.Bean;
 import org.springframework.web.client.RestTemplate;
 
@@ -12,6 +13,7 @@ import org.springframework.web.client.RestTemplate;
 @EnableDiscoveryClient
 @EnableHystrix     //开启hystrix(熔断器)功能,这个是必须的,并且需要在程序中声明断路点HystrixCommand;
                    //feign方式的调用则不需要，其自带断容器，只需在配置文件中开启
+@EnableHystrixDashboard     //启用Hystrix Dashboard(Hystrix 仪表盘)
 public class HystrixRibbonTurbineApplication {
 
 	@Bean
