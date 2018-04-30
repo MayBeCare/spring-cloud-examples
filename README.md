@@ -7,4 +7,5 @@
    &emsp;&emsp;&emsp;(spring-cloud-eureka，spring-cloud-producer，spring-cloud-consumer-hystrix-dashboard)<br>
    &emsp;&emsp;②集群下hystrix的监控turbine<br>
    &emsp;&emsp;&emsp;(spring-cloud-eureka，spring-cloud-producer，hystrix-feign-turbine，hystrix-ribbon-turbine，hystrix-dashboard-turbine)<br>
- 
+## 3. spring-cloud-config-git:<br>
+   &emsp;&emsp;spring-cloud配置中心git示例和refesh(配置文件信息更改时，服务端不需要修改，可正常显示，客户端需执行post请求http://客户端的IP:port/refresh)<br>
