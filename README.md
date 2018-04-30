@@ -9,3 +9,5 @@
    &emsp;&emsp;&emsp;(spring-cloud-eureka，spring-cloud-producer，hystrix-feign-turbine，hystrix-ribbon-turbine，hystrix-dashboard-turbine)<br>
 ## 3. spring-cloud-config-git:<br>
    &emsp;&emsp;spring-cloud配置中心git示例和refesh(配置文件信息更改时，服务端不需要修改，可正常显示，客户端需执行post请求http://客户端的IP:port/refresh)<br>
+## 4.spring-cloud-config-eureka:<br>
+   &emsp;&emsp;将server端当做一个服务注册到eureka中，client端去eureka中去获取配置中心server端的服务既可，达到了高可用的目的<br>
