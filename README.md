@@ -12,5 +12,5 @@
 ## 4.spring-cloud-config-eureka:<br>
    &emsp;&emsp;将server端当做一个服务注册到eureka中，client端去eureka中去获取配置中心server端的服务既可，达到了高可用的目的<br>
 ## 5.spring-cloud-config-eureka-bus:<br>
-   &emsp;&emsp;spring-cloud消息总线(使用RabbitMQ)，实现刷新服务端实现客户端的刷新，服务端修改时，发送post请求(/bus/refresh)实现服务端的全部刷新，局部刷新时，发送post请求(/bus/refresh?destination=ApplicationContext ID，默认情况下，ApplicationContext ID是spring.application.name:server.port)
-   
+   &emsp;&emsp;spring-cloud消息总线(使用RabbitMQ)，实现刷新服务端实现客户端的刷新，服务端修改时，发送post请求(http://服务端的IP:port/bus/refresh)实现客户端的全部刷新；局部刷新时，发送post请求(http://服务端的IP:port/bus/refresh?destination=ApplicationContext ID，默认情况下，ApplicationContext ID是spring.application.name:server.port)<br>
+## 6.
