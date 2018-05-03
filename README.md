@@ -13,4 +13,5 @@
    &emsp;&emsp;将server端当做一个服务注册到eureka中，client端去eureka中去获取配置中心server端的服务既可，达到了高可用的目的<br>
 ## 5.spring-cloud-config-eureka-bus:<br>
    &emsp;&emsp;spring-cloud消息总线(使用RabbitMQ)，实现刷新服务端实现客户端的刷新，服务端修改时，发送post请求(/bus/refresh)实现客户端的全部刷新；局部刷新时，发送post请求(/bus/refresh?destination=ApplicationContext ID，默认情况下，ApplicationContext ID是spring.application.name:server.port)，以上的请求都用服务端的IP和port发送<br>
-## 6.
+## 6.spring-cloud-zuul-gateway:<br>
+   &emsp;&emsp;spring-cloud服务网关zuul初级篇，分别启动eureka，producer，producer2，zuul；其中pruducer和producer2只是端口不同，为的是测试zuul成功调用了producer服务并且做了均衡负载。但是如果后端服务多达十几个的时候，每一个都这样配置也挺麻烦的，spring cloud zuul已经帮我们做了默认配置。默认情况下，Zuul会代理所有注册到Eureka Server的微服务，并且Zuul的路由规则如下：http://ZUUL_HOST:ZUUL_PORT/微服务在Eureka上的serviceId/**会被转发到serviceId对应的微服务<br>
