@@ -1,4 +1,4 @@
-package com.feign.cn.Remote;
+package com.feign.cn.remote;
 
 import org.springframework.stereotype.Component;
 

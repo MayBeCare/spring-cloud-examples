@@ -1,6 +1,6 @@
 package com.feign.cn.controller;
 
-import com.feign.cn.Remote.ProducerRemote;
+import com.feign.cn.remote.ProducerRemote;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;

@@ -1,4 +1,4 @@
-package com.feign.cn.Remote;
+package com.feign.cn.remote;
 
 import org.springframework.cloud.netflix.feign.FeignClient;
 import org.springframework.web.bind.annotation.RequestMapping;
