@@ -18,6 +18,7 @@
    &emsp;&emsp;②在zuul里面添加自定义的ZuulFilter，并在启动类里注入，实现请求的过滤<br>
    &emsp;&emsp;③在zuul里面添加自定义的RequestFallBack，实现Zuul回退机制处理器<br>
 ## 7.spring-cloud-sleuth-zipkin:<br>
-   &emsp;&emsp;使用Spring Cloud Sleuth和Zipkin进行分布式链路跟踪，Zipkin 是一个开放源代码分布式的跟踪系统，由Twitter公司开源。每个服务向zipkin报告计时数据，zipkin会根据调用关系通过Zipkin UI生成依赖关系图，显示了多少跟踪请求通过每个服务，该系统让开发者可通过一个 Web 前端轻松的收集和分析数据，例如用户每次请求服务的处理时间等，可方便的监测系统中存在的瓶颈<br>
+   &emsp;&emsp;①使用Spring Cloud Sleuth和Zipkin进行分布式链路跟踪，Zipkin 是一个开放源代码分布式的跟踪系统，由Twitter公司开源。每个服务向zipkin报告计时数据，zipkin会根据调用关系通过Zipkin UI生成依赖关系图，显示了多少跟踪请求通过每个服务，该系统让开发者可通过一个 Web 前端轻松的收集和分析数据，例如用户每次请求服务的处理时间等，可方便的监测系统中存在的瓶颈<br>
+   &emsp;&emsp;②zipkin-stream-*的为使用RabbitMQ进行通信
 ## 8.spring-cloud-admin-server:<br>
    &emsp;&emsp;spring-boot-admin-server整合eureka，监控spring cloud应用程序，并配置邮件的发送监控服务的上下线<br>
