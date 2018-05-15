@@ -1,6 +1,8 @@
 package com.producer.cn.controller;
 
+import com.producer.cn.entity.User;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -34,6 +36,20 @@ public class ProducerController {
     @RequestMapping({"/nowTime"})
     public String nowTime() {
         return new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
+    }
+
+    /*
+       获取消费端的登录信息
+     */
+    @RequestMapping("/getLoginInfo")
+    public String login(@RequestBody User user){
+
+        String userName = user.getUserName();
+        String passWord = user.getPassWord();
+
+        System.out.println("======获取到消费端登录的信息为: "+userName + "==========" + passWord);
+
+        return "1";
     }
 
 }

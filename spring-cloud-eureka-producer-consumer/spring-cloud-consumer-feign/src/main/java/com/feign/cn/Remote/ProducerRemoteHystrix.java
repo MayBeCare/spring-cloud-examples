@@ -1,5 +1,6 @@
 package com.feign.cn.remote;
 
+import com.feign.cn.entity.User;
 import org.springframework.stereotype.Component;
 
 /**
@@ -20,5 +21,10 @@ public class ProducerRemoteHystrix implements ProducerRemote {
     @Override
     public String nowTime() {
         return "Get Time Failed";
+    }
+
+    @Override
+    public String login(User user) {
+        return "Login Failed";
     }
 }

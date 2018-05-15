@@ -19,7 +19,7 @@ public class FeignController {
     @Autowired
     private ProducerRemote producerRemote;
 
-    @RequestMapping({"/hello/{name}"})
+    @RequestMapping({"/hi/{name}"})
     public String index(@PathVariable("name") String name) {
         return producerRemote.hello(name);
     }
