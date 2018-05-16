@@ -2,6 +2,7 @@ package com.feign.cn.remote;
 
 import com.feign.cn.entity.User;
 import org.springframework.stereotype.Component;
+import org.springframework.web.multipart.MultipartFile;
 
 /**
  * @author : asus
@@ -26,5 +27,10 @@ public class ProducerRemoteHystrix implements ProducerRemote {
     @Override
     public String login(User user) {
         return "Login Failed";
+    }
+
+    @Override
+    public String fileUpload(MultipartFile file) {
+        return "Upload File Failed";
     }
 }

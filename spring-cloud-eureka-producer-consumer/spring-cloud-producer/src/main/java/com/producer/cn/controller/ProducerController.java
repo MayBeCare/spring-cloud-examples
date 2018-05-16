@@ -2,11 +2,12 @@ package com.producer.cn.controller;
 
 import com.producer.cn.entity.User;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.File;
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -51,5 +52,34 @@ public class ProducerController {
 
         return "1";
     }
+
+    /*
+      上传文件
+     */
+//    @PostMapping(value = "/uploadFile", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    @PostMapping(value = "/uploadFile")
+    public String fileUpload(@RequestPart(value = "mfile") MultipartFile file) {
+
+        String fileName = file.getOriginalFilename();     //获取源文件名
+        System.out.println("接收到消费端传递的文件名为:" + fileName);
+
+        String filePath = "D:/img/";
+
+        try {
+
+            File mfile = new File(filePath + "/" + fileName);
+            if (mfile.exists()) {
+                mfile.delete();
+            }
+
+            file.transferTo(mfile);   // 转存文件
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return fileName;
+    }
+
 
 }
