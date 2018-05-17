@@ -1,6 +1,7 @@
 package com.feign.cn.remote;
 
 import com.feign.cn.entity.User;
+import feign.Logger;
 import feign.codec.Encoder;
 import feign.form.spring.SpringFormEncoder;
 import org.springframework.beans.factory.ObjectFactory;
@@ -23,7 +24,7 @@ import org.springframework.web.multipart.MultipartFile;
  /*
     fallback属性并指定其熔断类就行了
   */
-@FeignClient(name="spring-cloud-producer", configuration = ProducerRemote.MultipartSupportConfig.class)
+@FeignClient(name="spring-cloud-producer", fallback=ProducerRemoteHystrix.class, configuration = ProducerRemote.MultipartSupportConfig.class)
 public interface ProducerRemote {
 
     @RequestMapping({"/hello"})
@@ -40,7 +41,9 @@ public interface ProducerRemote {
                     consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public String fileUpload(@RequestPart(value = "file") MultipartFile file);
 
-
+    /*
+       用于上传文件
+     */
     @Configuration
     class MultipartSupportConfig {
         @Autowired
@@ -49,6 +52,12 @@ public interface ProducerRemote {
         @Bean
         public Encoder feignFormEncoder() {
             return new SpringFormEncoder(new SpringEncoder(messageConverters));
+        }
+
+        //指定feign的日志级别
+        @Bean
+        Logger.Level feignLoggerLevel(){
+            return Logger.Level.FULL;
         }
     }
 }

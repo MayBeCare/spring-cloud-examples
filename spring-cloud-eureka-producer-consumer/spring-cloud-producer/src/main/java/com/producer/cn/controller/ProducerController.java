@@ -55,6 +55,8 @@ public class ProducerController {
 
     /*
       上传文件
+
+      **********其value值须的和消费端的 MultipartFile的value值相同*******************
      */
 //    @PostMapping(value = "/uploadFile", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     @PostMapping(value = "/uploadFile")

@@ -15,6 +15,10 @@
             <input type="button" value="上传" onclick="upload();" />
         </div>
     </form>
+    <br/>
+    <div id="showImage">
+       <img id="imgStr" src="" alt=""/>
+    </div>
 </body>
 
 <script src="../static/js/jquery.min.js" th:src="@{/js/jquery.min.js}"></script>
@@ -46,14 +50,14 @@
                                   //且已经声明了属性enctype="multipart/form-data"，所以这里设置为false。
 
             success: function (returndata) {
-                alert("上传的文件名为:"+returndata);
+                // alert("上传的文件名为:"+returndata);
+                $("#imgStr").attr("src",basePath+"/"+returndata);
             },
             error: function () {
                 alert("上传异常");
             }
         });
     }
-
 
 </script>
 
