@@ -3,6 +3,7 @@
 ## 1. spring-cloud-eureka-producer-consumer:<br>
    &emsp;&emsp;①spring-cloud 注册中心Eureka，服务提供与调用(Feign和Ribbon两种方式)，熔断器Hystrix(只是作用在服务调用端)的使用<br>
    &emsp;&emsp;②在Feign消费端实现传递实体类的实例<br>
+   &emsp;&emsp;③在Feign消费端实现用formdata上传文件的实例，并加入Feign的日志配置<br>
 ## 2. spring-cloud-hystrix-dashboard-turbine:<br>
    &emsp;&emsp;①单个应用的熔断监控Hystrix Dashboard<br>
    &emsp;&emsp;&emsp;(spring-cloud-eureka，spring-cloud-producer，spring-cloud-consumer-hystrix-dashboard)<br>
