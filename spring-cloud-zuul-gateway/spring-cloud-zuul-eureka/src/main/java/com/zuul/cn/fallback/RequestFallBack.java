@@ -19,7 +19,7 @@ import java.io.InputStream;
  * @Copyright : Copyright (c) 2018 All Rights Reserved
  */
 @Component
-public class RequestFallBack  implements FallbackProvider {
+public class RequestFallBack implements FallbackProvider {
 
     /**
      * 返回值表示需要针对此微服务做回退处理（该名称一定要是注册进入 eureka 微服务中的那个 serviceId 名称）；
@@ -28,11 +28,11 @@ public class RequestFallBack  implements FallbackProvider {
      */
     @Override
     public String getRoute() {
-        return "spring-cloud-producer";   //api服务id，如果需要所有调用都支持回退，则return "*"或return null
+        return "*";   //api服务id，如果需要所有调用都支持回退，则return "*"或return null
     }
 
     @Override
-    public ClientHttpResponse fallbackResponse(String route, Throwable cause) {
+    public ClientHttpResponse fallbackResponse(Throwable cause) {
         return new ClientHttpResponse(){
 
             @Override
@@ -70,4 +70,11 @@ public class RequestFallBack  implements FallbackProvider {
             }
         };
     }
+
+
+    @Override
+    public ClientHttpResponse fallbackResponse() {
+        return null;
+    }
 }
+

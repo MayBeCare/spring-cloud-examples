@@ -1,0 +1,24 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Upload File</title>
+</head>
+<body>
+<form id="form" method="POST" enctype="multipart/form-data" action="">
+    <h5 id="ser" style="display: none" th:text="${servicePath}"></h5>   <!--获取后台返回的值-->
+    File to upload:<br/>
+    <input type="file" name="file"/>
+    <input type="text" name="token" value="123" style="display: none"/>
+    <input type="submit" value="Upload"/>
+</form>
+</body>
+<script src="../static/js/jquery-1.7.1.min.js" th:src="@{/js/jquery-1.7.1.min.js}"></script>
+<script type="text/javascript" th:inline="javascript">
+
+    $(document).ready(function(){
+       var ser = $("#ser").text();
+       $('#form').attr('action',ser+"/upload");   //将地址赋予action
+    });
+</script>
+</html>

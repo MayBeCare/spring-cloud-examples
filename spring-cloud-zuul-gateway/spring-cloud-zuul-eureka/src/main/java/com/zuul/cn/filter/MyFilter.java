@@ -3,10 +3,15 @@ package com.zuul.cn.filter;
 import com.netflix.zuul.ZuulFilter;
 import com.netflix.zuul.context.RequestContext;
 import com.netflix.zuul.exception.ZuulException;
+import org.apache.commons.fileupload.FileItem;
+import org.apache.commons.fileupload.FileUploadException;
+import org.apache.commons.fileupload.disk.DiskFileItemFactory;
+import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
 /**
  * @author : asus
@@ -57,14 +62,50 @@ public class MyFilter extends ZuulFilter {
      * 当然我们也可以进一步优化我们的返回，比如，通过ctx.setResponseBody(body)对返回body内容进行编辑等。
      */
     @Override
-    public Object run() throws ZuulException {
+    public Object run() {
         RequestContext ctx = RequestContext.getCurrentContext();
         HttpServletRequest request = ctx.getRequest();
 
         logger.info("--->>> TokenFilter {},{}", request.getMethod(), request.getRequestURL().toString());
 
-        String token = request.getParameter("token");// 获取请求的参数
-        if(token == null){
+        // 判断是否为表单数据   true:表单数据；false：不是表单数据
+        boolean multipartContent = ServletFileUpload.isMultipartContent(request);
+
+        String token = null;
+
+        if(multipartContent){
+
+            // 1.创建创建DiskFileItemFactory工厂
+            DiskFileItemFactory factory = new DiskFileItemFactory();
+
+            // 2.创建文件解析器
+            ServletFileUpload upload = new ServletFileUpload(factory);
+
+            try {
+                // 解析的结果是一个List<FileItem>,每个FileItem代表一个输入项
+                List<FileItem> items = upload.parseRequest(request);
+
+                // 遍历list处理上传文件
+                for (FileItem fileItem : items) {
+                    if (fileItem.isFormField()) {
+                        // 普通表单域
+                        String name = fileItem.getFieldName();   //获取文本框name
+                        if("token".equals(name)){                //判断是否为token，如果是，则获取其值
+                            token = fileItem.getString();
+                        }
+                    }else{
+                        // 文件域
+                    }
+                }
+            } catch (FileUploadException e) {
+                e.printStackTrace();
+            }
+
+        }else{     //不是表单数据
+            token = request.getParameter("token");// 获取请求的参数
+        }
+
+        if(token == null && token != ""){
             logger.warn("access token is empty");
             ctx.setSendZuulResponse(false);         //不对其进行路由
             ctx.setResponseStatusCode(401);         //响应码
