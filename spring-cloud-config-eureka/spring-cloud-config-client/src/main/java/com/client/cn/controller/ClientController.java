@@ -1,7 +1,11 @@
 package com.client.cn.controller;
 
+import com.client.cn.dao.UserInfoDao;
+import com.client.cn.entity.UserInfo;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -19,8 +23,16 @@ public class ClientController {
     @Value("${neo.hello}")
     private String hello;
 
+    @Autowired
+    private UserInfoDao userInfoDao;
+
     @RequestMapping("/hello")
     public String from() {
-        return this.hello;
+        return this.hello ;
+    }
+
+    @RequestMapping("/getUserInfo/{userId}")
+    public UserInfo getUserInfo(@PathVariable("userId") Integer userId){
+        return userInfoDao.findByUserId(userId);
     }
 }
